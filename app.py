@@ -73,7 +73,10 @@ def home():
         if file and allowed_file(file.filename):
             filename = file.filename
             
-            saved_filepath = os.path.join("static", "temp", filename)
+            temp_path = os.path.join("static", "temp")
+            os.makedirs(temp_path, exist_ok=True)
+            
+            saved_filepath = os.path.join(temp_path, filename)
             file.save(saved_filepath)
             
             new_filepath = transform(saved_filepath)
